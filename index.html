@@ -21,7 +21,10 @@
       	.enter()
       	.append("div")
       	.text(function(d) { return d; })
-      	.attr("class","bar");
+      	.attr("class","bar")
+      	.style("height", function(d) {
+      		return d + "px";
+      	});
     </script>
   </body>
 </html>
