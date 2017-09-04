@@ -9,6 +9,7 @@
     		display: inline-block;
     		width: 20px;
     		height: 75px;
+    		margin-right: 2px;
     		background-color: teal;
     	}
     </style>
@@ -22,7 +23,8 @@
       	.append("div")
       	.attr("class","bar")
       	.style("height", function(d) {
-      		return d + "px";
+      		var barHeight = d * 5;
+      		return barHeight + "px";
       	});
     </script>
   </body>
