@@ -10,7 +10,13 @@
       d3.select("body")
       	.append("p")
       	.text("New paragraph");
-      d3.csv("food.csv", function(data) {
+      	var rowConverter = function(d) {
+      		return {
+      			Food: d.Food,
+      			Deliciousness: parseFloat(d.Deliciousness)
+      		};
+      	}
+      d3.csv("food.csv", rowConverter, function(data) {
       	console.log(data);
       });
     </script>
