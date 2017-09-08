@@ -12,6 +12,19 @@
     		margin-right: 2px;
     		background-color: teal;
     	}
+
+    	.axis path,
+    	.axis line {
+    		stroke: teal;
+    		shape-rendering: crispEdges;
+    	}
+
+    	.axis text {
+    		font-family: Optima, Futura, sans-serif;
+    		font-weight: bold;
+    		font-size: 14px;
+    		fill: teal;
+    	}
     </style>
   </head>
   <body>
@@ -33,10 +46,10 @@
       var h = 300;
       var padding = 20;
 	  var xScale = 	d3.scaleLinear()
-	  					.domain([0,d3.max(dataset, function(d) { return d[0]; })])
+	  					.domain([0, d3.max(dataset, function(d) { return d[0]; })])
 	  					.range([padding, w - (padding*2)]);
 	  var yScale = 	d3.scaleLinear()
-	  					.domain([0,d3.max(dataset, function(d) { return d[1]; })])
+	  					.domain([0, d3.max(dataset, function(d) { return d[1]; })])
 	  					.range([h - padding, padding]);
 	  var rScale = 	d3.scaleLinear()
 	  					.domain([0,d3.max(dataset, function(d) { return d[1]; })])
@@ -48,7 +61,9 @@
       					.append("svg")
       					.attr("width",w)
       					.attr("height",h);
-      var xAxis = 	d3.axisBottom(xScale);
+      var xAxis = 	d3.axisBottom();
+      					.scale(xScale)
+      					.ticks(5)
       svg.selectAll("circle")
       		.data(dataset)
       		.enter()
