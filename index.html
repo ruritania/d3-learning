@@ -64,6 +64,9 @@
       var xAxis = 	d3.axisBottom()
       					.scale(xScale)
       					.ticks(5)
+      var yAxis = 	d3.axisLeft()
+      					.scale(yScale)
+      					.ticks(5)
       svg.selectAll("circle")
       		.data(dataset)
       		.enter()
@@ -97,6 +100,9 @@
 	  		.attr("class", "axis")
 	  		.attr("transform", "translate(0," + (h-padding) + ")")
 	  		.call(xAxis);
+	  svg.append("g")
+	  		.attr("class", "axis")
+	  		.call(yAxis);
     </script>
   </body>
 </html>
