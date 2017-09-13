@@ -33,6 +33,10 @@
 						.attr("width", w)
 						.attr("height", h);
 
+			var para = d3.select("body")
+						 .append("p")
+						 .text("Click here");
+
 			//Create bars
 			svg.selectAll("rect")
 			   .data(dataset)
@@ -77,6 +81,5 @@
 			  });
 
 		</script>
-		<p>Click on this text to update the chart with new data values</p>
 	</body>
 </html>
