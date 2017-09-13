@@ -43,6 +43,9 @@
 						 	svg.selectAll("rect")
 						 		.data(dataset)
 						 		.transition()
+						 		.delay(function(d, i) {
+						 			return i * 100;
+						 		})
 						 		.duration(1000)
 						 		.ease(d3.easeElasticOut)
 						 		.attr("y", function(d) {
@@ -59,6 +62,9 @@
 					 			.data(dataset)
 					 			.transition()
 					 			.duration(1000)
+						 		.delay(function(d, i) {
+						 			return i * 100;
+						 		})
 					 			.ease(d3.easeElasticOut)
 					 			.text(function(d) {
 					 				return d;
