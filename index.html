@@ -44,7 +44,7 @@
 						 		.data(dataset)
 						 		.transition()
 						 		.delay(function(d, i) {
-						 			return i * 100;
+						 			return i / dataset.length * 1000;
 						 		})
 						 		.duration(500)
 						 		.ease(d3.easeElasticOut)
@@ -62,7 +62,7 @@
 					 			.data(dataset)
 					 			.transition()
 						 		.delay(function(d, i) {
-						 			return i * 100;
+						 			return i / dataset.length * 1000;
 						 		})
 					 			.duration(500)
 					 			.ease(d3.easeElasticOut)
