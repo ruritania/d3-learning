@@ -37,7 +37,17 @@
 						 .append("p")
 						 .text("Click here")
 						 .on("click", function(){
-						 	alert("Don't click that.");
+
+						 	dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25, 5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+
+						 	svg.selectAll("rect")
+						 		.data(dataset)
+						 		.attr("y", function(d) {
+						 			return h - yScale(d);
+						 		})
+						 		.attr("height", function(d) {
+						 			return yScale(d);
+						 		});
 						 });
 
 			//Create bars
