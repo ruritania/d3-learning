@@ -44,7 +44,7 @@
 						 		.data(dataset)
 						 		.transition()
 						 		.duration(1000)
-						 		.ease(d3.easeCircleIn)
+						 		.ease(d3.easeElasticOut)
 						 		.attr("y", function(d) {
 						 			return h - yScale(d);
 						 		})
@@ -59,7 +59,7 @@
 					 			.data(dataset)
 					 			.transition()
 					 			.duration(1000)
-					 			.ease(d3.easeBounceOut)
+					 			.ease(d3.easeElasticOut)
 					 			.text(function(d) {
 					 				return d;
 					 			})
