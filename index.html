@@ -43,7 +43,8 @@
 						 	svg.selectAll("rect")
 						 		.data(dataset)
 						 		.transition()
-						 		.duration(5000)
+						 		.duration(1000)
+						 		.ease(d3.easeCircleIn)
 						 		.attr("y", function(d) {
 						 			return h - yScale(d);
 						 		})
@@ -57,7 +58,8 @@
 					 		svg.selectAll("text")
 					 			.data(dataset)
 					 			.transition()
-					 			.duration(5000)
+					 			.duration(1000)
+					 			.ease(d3.easeBounceOut)
 					 			.text(function(d) {
 					 				return d;
 					 			})
