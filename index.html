@@ -35,7 +35,10 @@
 
 			var para = d3.select("body")
 						 .append("p")
-						 .text("Click here");
+						 .text("Click here")
+						 .on("click", function(){
+						 	alert("Don't click that.");
+						 });
 
 			//Create bars
 			svg.selectAll("rect")
@@ -74,11 +77,6 @@
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "11px")
 			   .attr("fill", "white");
-			
-			d3.select("p")
-			  .on("click", function() {
-			  	console.log("Clicked");
-			  });
 
 		</script>
 	</body>
