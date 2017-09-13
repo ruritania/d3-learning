@@ -46,7 +46,7 @@
 						 		.delay(function(d, i) {
 						 			return i * 100;
 						 		})
-						 		.duration(1000)
+						 		.duration(500)
 						 		.ease(d3.easeElasticOut)
 						 		.attr("y", function(d) {
 						 			return h - yScale(d);
@@ -61,10 +61,10 @@
 					 		svg.selectAll("text")
 					 			.data(dataset)
 					 			.transition()
-					 			.duration(1000)
 						 		.delay(function(d, i) {
 						 			return i * 100;
 						 		})
+					 			.duration(500)
 					 			.ease(d3.easeElasticOut)
 					 			.text(function(d) {
 					 				return d;
