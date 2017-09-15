@@ -83,6 +83,13 @@
 					 				} else {
 					 					return h - yScale(d) - 14;
 					 				}
+					 			})
+					 			.attr("fill", function(d) {
+					 				if (d > 3) {
+					 					return "black";
+					 				} else {
+					 					return "white";
+					 				}
 					 			});
 						 });
 
@@ -128,10 +135,8 @@
 			   .attr("font-size", "11px")
 			   .attr("fill", function (d) {
 			   		if (d < 3) {
-			   			console.log(d);
 						return "rgb(0, 0, 0)";
 					} else {
-			   			console.log(d);
 						return "rgb(255, 255, 255)";
 					}
 				});
