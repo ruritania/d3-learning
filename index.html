@@ -81,14 +81,14 @@
 					 				return xScale(i) + xScale.bandwidth() / 2;
 					 			})
 					 			.attr("y", function(d) {
-					 				if (d > 3) {
+					 				if (d > (d3.max(dataset)/5)) {
 					 					return h - yScale(d) + 14;
 					 				} else {
 					 					return h - yScale(d) - 14;
 					 				}
 					 			})
 					 			.attr("fill", function(d) {
-					 				if (d > 3) {
+					 				if (d > (d3.max(dataset)/5)) {
 					 					return "white";
 					 				} else {
 					 					return "black";
