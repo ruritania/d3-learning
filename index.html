@@ -118,16 +118,21 @@
 			   		return xScale(i) + xScale.bandwidth() / 2;
 			   })
 			   .attr("y", function(d) {
-			   		return h - yScale(d) + 14;
+	 				if (d > 3) {
+	 					return h - yScale(d) + 14;
+	 				} else {
+	 					return h - yScale(d) - 14;
+	 				}
 			   })
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "11px")
 			   .attr("fill", function (d) {
 			   		if (d < 3) {
 			   			console.log(d);
-						return "black";
+						return "rgb(0, 0, 0)";
 					} else {
-						return "white";
+			   			console.log(d);
+						return "rgb(255, 255, 255)";
 					}
 				});
 
