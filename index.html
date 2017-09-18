@@ -38,10 +38,13 @@
 						 .append("p")
 						 .text("Click here")
 						 .on("click", function(){
+
 						 	var newNumber = Math.floor(Math.random() * maxValue);
+						 	console.log(newNumber);
+						 	
 						 	dataset.push(newNumber);
 
-						 	xScale.doman(d3.range(dataset.length));
+						 	xScale.domain(d3.range(dataset.length));
 
 						 	var bars = svg.selectAll("rect")
 						 					.data(dataset);
