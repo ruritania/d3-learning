@@ -38,62 +38,39 @@
 						 .append("p")
 						 .text("Click here")
 						 .on("click", function(){
+						 	var newNumber = Math.floor(Math.random() * maxValue);
+						 	dataset.push(newNumber);
 
-						 	var numValues = dataset.length;
-						 	dataset = [];
-						 	for (var i = 0; i < numValues; i++) {
-						 		var newNumber = Math.floor(Math.random() * maxValue);
-						 		dataset.push(newNumber);
-						 	}
+						 	xScale.doman(d3.range(dataset.length));
 
-						 	yScale.domain([0, d3.max(dataset)]);
-
-						 	svg.selectAll("rect")
-						 		.data(dataset)
-						 		.transition()
-						 		.delay(function(d, i) {
-						 			return i / dataset.length * 1000;
-						 		})
-						 		.duration(500)
-						 		.ease(d3.easeElasticOut)
+						 	var bars = svg.selectAll("rect")
+						 					.data(dataset);
+						 	bars.enter()
+						 		.append("rect")
+						 		.attr("x", w)
 						 		.attr("y", function(d) {
 						 			return h - yScale(d);
 						 		})
+						 		.attr("width", xScale.bandwidth())
 						 		.attr("height", function(d) {
 						 			return yScale(d);
 						 		})
 						 		.attr("fill", function(d) {
 						 			return "rgb(0, 0, " + Math.round(d * 10) + ")";
-						 		});
-
-					 		svg.selectAll("text")
-					 			.data(dataset)
-					 			.transition()
-						 		.delay(function(d, i) {
-						 			return i / dataset.length * 1000;
 						 		})
-					 			.duration(500)
-					 			.ease(d3.easeElasticOut)
-					 			.text(function(d) {
-					 				return d;
-					 			})
-					 			.attr("x", function(d, i) {
-					 				return xScale(i) + xScale.bandwidth() / 2;
-					 			})
-					 			.attr("y", function(d) {
-					 				if (d > (d3.max(dataset)/5)) {
-					 					return h - yScale(d) + 14;
-					 				} else {
-					 					return h - yScale(d) - 14;
-					 				}
-					 			})
-					 			.attr("fill", function(d) {
-					 				if (d > (d3.max(dataset)/5)) {
-					 					return "white";
-					 				} else {
-					 					return "black";
-					 				}
-					 			});
+						 		.merge(bars)
+						 		.transition()
+						 		.duration(500)
+						 		.attr("x", function(d, i) {
+						 			return xScale(i);
+						 		})
+						 		.attr("y", function(d) {
+						 			return h - yScale(d);
+						 		})
+						 		.attr("width", xScale.bandwidth())
+						 		.attr("height", function(d) {
+						 			return yScale(d);
+						 		});
 						 });
 
 			//Create bars
