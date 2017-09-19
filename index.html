@@ -14,7 +14,7 @@
 			//Width and height
 			var w = 600;
 			var h = 250;
-			var maxValue = 100;
+			var maxValue = 25;
 			
 			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -41,7 +41,7 @@
 
 						 	var newNumber = Math.floor(Math.random() * maxValue);
 						 	console.log(newNumber);
-						 	
+
 						 	dataset.push(newNumber);
 
 						 	xScale.domain(d3.range(dataset.length));
@@ -74,6 +74,41 @@
 						 		.attr("height", function(d) {
 						 			return yScale(d);
 						 		});
+
+					 		var words = svg.selectAll("text")
+					 						.data(dataset);
+
+					 		words.enter()
+					 				.append("text")
+					 				.text(function(d) {
+					 					return d;
+					 				})
+					 				.attr("text-anchor", "middle")
+								    .attr("font-family", "sans-serif")
+								    .attr("font-size", "11px")
+								    .attr("fill", function (d) {
+								   		if (d < 3) {
+											return "rgb(0, 0, 0)";
+										} else {
+											return "rgb(255, 255, 255)";
+										}
+									});
+					 				.attr("x", function(d, i) {
+					 					retunr xScale(i);
+					 				})
+					 				.attr("y", function(d) {
+						 				if (d > 3) {
+						 					return h - yScale(d) + 14;
+						 				} else {
+						 					return h - yScale(d) - 14;
+						 				}
+								    })
+								    .merge(words)
+								    .transition()
+								    .duration(500)
+									.attr("x", function(d, i) {
+								   		return xScale(i) + xScale.bandwidth() / 2;
+								   	})
 						 });
 
 			//Create bars
