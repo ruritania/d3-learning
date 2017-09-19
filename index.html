@@ -73,7 +73,10 @@
 						 		.attr("width", xScale.bandwidth())
 						 		.attr("height", function(d) {
 						 			return yScale(d);
-						 		});
+						 		})
+							   	.attr("fill", function(d) {
+									return "rgb(0, 0, " + Math.round(d * 10) + ")";
+							   	});
 
 						 	bars.exit()
 						 		.transition()
@@ -89,7 +92,7 @@
 					 				return(d);
 					 			})
 					 			.attr("x", function(d, i) {
-					 					return xScale(i) + xScale.bandwidth() * 2;
+					 					return xScale(i) + xScale.bandwidth() / 2;
 					 				})
 				 				.attr("y", function(d) {
 					 				if (d > minValue) {
@@ -97,7 +100,9 @@
 					 				} else {
 					 					return h - yScale(d) - (maxValue / 2);
 					 				}
-							    });
+							    })
+							    .exit()
+							    .remove();
 
 						 });
 
