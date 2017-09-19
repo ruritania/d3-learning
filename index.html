@@ -15,6 +15,7 @@
 			var w = 600;
 			var h = 250;
 			var maxValue = 25;
+			var minValue  = maxValue / 10;
 			
 			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
@@ -94,13 +95,13 @@
 										}
 									})
 					 				.attr("x", function(d, i) {
-					 					return xScale(i) + xScale.bandwidth();
+					 					return xScale(i) + xScale.bandwidth() * 2;
 					 				})
 					 				.attr("y", function(d) {
 						 				if (d > 3) {
-						 					return h - yScale(d) + 14;
+						 					return h - yScale(d) + (maxValue / 2);
 						 				} else {
-						 					return h - yScale(d) - 14;
+						 					return h - yScale(d) - (maxValue / 2);
 						 				}
 								    })
 								    .merge(words)
@@ -143,10 +144,10 @@
 			   		return xScale(i) + xScale.bandwidth() / 2;
 			   })
 			   .attr("y", function(d) {
-	 				if (d > 3) {
-	 					return h - yScale(d) + 14;
+	 				if (d > minValue) {
+	 					return h - yScale(d) + (maxValue / 2);
 	 				} else {
-	 					return h - yScale(d) - 14;
+	 					return h - yScale(d) - (maxValue / 2);
 	 				}
 			   })
 			   .attr("font-family", "sans-serif")
