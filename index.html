@@ -40,83 +40,17 @@
 						 .text("Click here")
 						 .on("click", function(){
 
-						 	var newNumber = Math.floor(Math.random() * maxValue);
-						 	console.log(newNumber);
-
-						 	dataset.push(newNumber);
+						 	dataset.shift();
 
 						 	xScale.domain(d3.range(dataset.length));
 
 						 	var bars = svg.selectAll("rect")
 						 					.data(dataset);
-						 	bars.enter()
-						 		.append("rect")
-						 		.attr("x", w)
-						 		.attr("y", function(d) {
-						 			return h - yScale(d);
-						 		})
-						 		.attr("width", xScale.bandwidth())
-						 		.attr("height", function(d) {
-						 			return yScale(d);
-						 		})
-						 		.attr("fill", function(d) {
-						 			return "rgb(0, 0, " + Math.round(d * 10) + ")";
-						 		})
-						 		.merge(bars)
+						 	bars.exit()
 						 		.transition()
 						 		.duration(500)
-						 		.attr("x", function(d, i) {
-						 			return xScale(i);
-						 		})
-						 		.attr("y", function(d) {
-						 			return h - yScale(d);
-						 		})
-						 		.attr("width", xScale.bandwidth())
-						 		.attr("height", function(d) {
-						 			return yScale(d);
-						 		});
-
-					 		var words = svg.selectAll("text")
-					 						.data(dataset);
-
-					 		words.enter()
-					 				.append("text")
-					 				.text(function(d) {
-					 					return d;
-					 				})
-					 				.attr("text-anchor", "middle")
-								    .attr("font-family", "sans-serif")
-								    .attr("font-size", "11px")
-								    .attr("fill", function (d) {
-								   		if (d < minValue) {
-											return "rgb(0, 0, 0)";
-										} else {
-											return "rgb(255, 255, 255)";
-										}
-									})
-					 				.attr("x", function(d, i) {
-					 					return xScale(i) + xScale.bandwidth() * 2;
-					 				})
-					 				.attr("y", function(d) {
-						 				if (d > minValue) {
-						 					return h - yScale(d) + (maxValue / 2);
-						 				} else {
-						 					return h - yScale(d) - (maxValue / 2);
-						 				}
-								    })
-								    .merge(words)
-								    .transition()
-								    .duration(500)
-									.attr("x", function(d, i) {
-								   		return xScale(i) + xScale.bandwidth() / 2;
-								   	})
-								    .attr("fill", function (d) {
-								   		if (d < minValue) {
-											return "rgb(0, 0, 0)";
-										} else {
-											return "rgb(255, 255, 255)";
-										}
-									});
+						 		.attr("x", w)
+						 		.remove();
 						 });
 
 			//Create bars
