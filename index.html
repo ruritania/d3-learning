@@ -75,11 +75,11 @@
 						 			return yScale(d);
 						 		});
 
-						 	//bars.exit()
-						 	//	.transition()
-						 	//	.duration(500)
-						 	//	.attr("x", w)
-						 	//	.remove();
+						 	bars.exit()
+						 		.transition()
+						 		.duration(500)
+						 		.attr("x", w)
+						 		.remove();
 
 					 		svg.selectAll("text")
 					 			.data(dataset)
