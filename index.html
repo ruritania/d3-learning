@@ -43,7 +43,7 @@
 						 	dataset.shift();
 
 						 	xScale.domain(d3.range(dataset.length));
-						 	yScale.domain(0, d3.max(dataset));
+						 	yScale.domain([0, d3.max(dataset)]);
 
 						 	var bars = svg.selectAll("rect")
 						 					.data(dataset);
