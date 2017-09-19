@@ -43,14 +43,62 @@
 						 	dataset.shift();
 
 						 	xScale.domain(d3.range(dataset.length));
+						 	yScale.domain(0, d3.max(dataset));
 
 						 	var bars = svg.selectAll("rect")
 						 					.data(dataset);
+
+						 	bars.enter()
+						 		.append("rect")
+						 		.attr("x", w)
+						 		.attr("y", function(d) {
+						 			return h - yScale(d);
+						 		})
+						 		.attr("width", xScale.bandwidth())
+						 		.attr("height", function(d) {
+						 			return yScale(d);
+						 		})
+						 		.attr("fill", function(d) {
+						 			return "rgb(0, 0, " + Math.round(d * 10) + ")";
+						 		})
+						 		.merge(bars)
+						 		.transition()
+						 		.duration(500)
+						 		.attr("x", function(d, i) {
+						 			return xScale(i);
+						 		})
+						 		.attr("y", function(d) {
+						 			return h - yScale(d);
+						 		})
+						 		.attr("width", xScale.bandwidth())
+						 		.attr("height", function(d) {
+						 			return yScale(d);
+						 		});
+
 						 	bars.exit()
 						 		.transition()
 						 		.duration(500)
 						 		.attr("x", w)
 						 		.remove();
+
+					 		svg.selectAll("text")
+					 			.data(dataset)
+					 			.transition()
+					 			.duration(500)
+					 			.text(function(d) {
+					 				return(d);
+					 			})
+					 			.attr("x", function(d, i) {
+					 					return xScale(i) + xScale.bandwidth() * 2;
+					 				})
+				 				.attr("y", function(d) {
+					 				if (d > minValue) {
+					 					return h - yScale(d) + (maxValue / 2);
+					 				} else {
+					 					return h - yScale(d) - (maxValue / 2);
+					 				}
+							    });
+
 						 });
 
 			//Create bars
