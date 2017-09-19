@@ -47,6 +47,8 @@
 
 						 	var bars = svg.selectAll("rect")
 						 					.data(dataset);
+						 	var words = svg.selectAll("text")
+						 					.data(dataset);
 
 						 	bars.enter()
 						 		.append("rect")
@@ -84,25 +86,8 @@
 						 		.attr("x", w)
 						 		.remove();
 
-					 		svg.selectAll("text")
-					 			.data(dataset)
-					 			.transition()
-					 			.duration(500)
-					 			.text(function(d) {
-					 				return(d);
-					 			})
-					 			.attr("x", function(d, i) {
-					 					return xScale(i) + xScale.bandwidth() / 2;
-					 				})
-				 				.attr("y", function(d) {
-					 				if (d > minValue) {
-					 					return h - yScale(d) + (maxValue / 2);
-					 				} else {
-					 					return h - yScale(d) - (maxValue / 2);
-					 				}
-							    })
-							    .exit()
-							    .remove();
+					 		words.exit()
+					 			remove();
 
 						 });
 
